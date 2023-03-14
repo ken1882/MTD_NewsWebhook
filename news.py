@@ -34,6 +34,7 @@ def update():
         news = sorted(news, key=lambda o: -o['id'])
     except Exception as err:
         utils.handle_exception(err)
+        return
     olds = get_old_news()
     o_cksum = sum((o['id'] for o in olds))
     n_cksum = sum((n['id'] for n in news))
@@ -52,7 +53,10 @@ def update():
         else:
             break
     for a in ar:
-        send_message(a)
+        try:
+            send_message(a)
+        except Exception as err:
+            utils.handle_exception(err)
     with open(PREV_NEWS_FILE, 'w') as fp:
         json.dump(news, fp)
 

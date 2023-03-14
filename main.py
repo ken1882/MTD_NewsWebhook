@@ -5,7 +5,7 @@ TICK = 60
 
 def main_update():
     while True:
-        news.updae()
+        news.update()
         sleep(TICK)
 
 if __name__ == '__main__':
