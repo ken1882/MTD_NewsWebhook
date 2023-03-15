@@ -36,8 +36,8 @@ def update():
         utils.handle_exception(err)
         return
     olds = get_old_news()
-    o_cksum = sum((o['id'] for o in olds))
-    n_cksum = sum((n['id'] for n in news))
+    o_cksum = int(datetime.fromisoformat(olds[0]['postedAt']).timestamp())
+    n_cksum = int(datetime.fromisoformat(news[0]['postedAt']).timestamp())
     if o_cksum > n_cksum:
         _G.log_warning(f"Old news newer than latest news ({o_cksum} > {n_cksum}), skip")
         return
