@@ -40,7 +40,6 @@ def update():
     n_cksum = int(datetime.fromisoformat(news[0]['postedAt']).timestamp())
     if o_cksum > n_cksum:
         _G.log_warning(f"Old news newer than latest news ({o_cksum} > {n_cksum})")
-        news, olds = olds, news
     elif o_cksum == n_cksum:
         _G.log_info("No news, skip")
         return
